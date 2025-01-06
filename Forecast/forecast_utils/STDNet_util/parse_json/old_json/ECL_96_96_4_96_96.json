@@ -1,0 +1,103 @@
+{
+    "task_name": "long_term_forecast",
+    "is_training": 1,
+    "model_id": "ECL_96_96_4",
+    "model": "STDNet",
+    "data": "custom",
+    "root_path": "./dataset/electricity/",
+    "data_path": "electricity.csv",
+    "features": "M",
+    "target": "OT",
+    "freq": "h",
+    "checkpoints": "./checkpoints/",
+    "seq_len": 96,
+    "label_len": 48,
+    "pred_len": 96,
+    "seasonal_patterns": "Monthly",
+    "mask_rate": 0.25,
+    "anomaly_ratio": 0.25,
+    "top_k": 5,
+    "num_kernels": 6,
+    "enc_in": 7,
+    "dec_in": 7,
+    "c_out": 321,
+    "d_model": 256,
+    "n_heads": 8,
+    "e_layers": 2,
+    "d_layers": 1,
+    "d_ff": 2048,
+    "moving_avg": 25,
+    "factor": 1,
+    "distil": true,
+    "dropout": 0.1,
+    "embed": "timeF",
+    "activation": "relu",
+    "output_attention": false,
+    "num_workers": 10,
+    "itr": 5,
+    "train_epochs": 10,
+    "batch_size": 64,
+    "patience": 3,
+    "learning_rate": 0.0001,
+    "des": "Exp",
+    "loss": "MAE",
+    "lradj": "type1",
+    "use_amp": false,
+    "use_gpu": true,
+    "gpu": 0,
+    "use_multi_gpu": false,
+    "devices": "0,1,2,3",
+    "p_hidden_dims": [
+        128,
+        128
+    ],
+    "p_hidden_layers": 2,
+    "n_x": 0,
+    "n_s": 0,
+    "shared_weights": false,
+    "stack_types": [
+        "time_auto",
+        "space_cnn_att",
+        "space_cnn_att"
+    ],
+    "rate1": 0.5,
+    "start_stack_types": [
+        "None",
+        "None",
+        "None"
+    ],
+    "n_cnn_kernel_size": [
+        3,
+        3,
+        3
+    ],
+    "n_blocks": [
+        3,
+        3,
+        3
+    ],
+    "n_layers": [
+        2,
+        2,
+        2
+    ],
+    "n_mlp_units": [
+        [
+            256,
+            256
+        ],
+        [
+            256,
+            256
+        ],
+        [
+            256,
+            256
+        ]
+    ],
+    "cnnatt_hidden_dim": 256,
+    "n_harmonics": 5,
+    "n_polynomials": 5,
+    "batch_normalization": false,
+    "weight_decay": 0.0005
+}

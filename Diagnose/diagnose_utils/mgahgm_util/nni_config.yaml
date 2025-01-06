@@ -1,0 +1,29 @@
+search_space:
+  # mask_rate:
+  #   _type: uniform
+  #   _value: [0, 1]
+  # lr:
+  #   _type: loguniform
+  #   _value: [0.0001, 0.1]
+  # replace_rate:
+  #   _type: uniform
+  #   _value: [0, 1]
+  # gamma:
+  #   _type: uniform
+  #   _value: [ 0, 1 ]
+
+trial_command: python train.py --dataset SWAT --mask_rate 0.4 --lookback 100 --gamma 0.8 --epochs 100 --init_lr 0.001 --gru_n_layers 1 --forecast_loss_fn rmse --recon_loss_fn rmse --loss_min_save True --clip_grad True --weight_decay 1e-5 --eps 1e-4 --convEn False --remask True
+trial_code_directory: .
+experiment_working_directory: nni-experiments
+
+max_trial_number: 10
+trial_concurrency: 1
+
+tuner:
+  name: TPE
+  class_args:
+    optimize_mode: minimize
+
+training_service:
+  platform: local
+

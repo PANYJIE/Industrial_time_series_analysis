@@ -1,0 +1,40 @@
+search_space:
+  tiaocan:
+    _type: quniform
+    _value: [0, 0.9, 0.05]
+#  mask_rate:
+#    _type: quniform
+#    _value: [0, 0.8, 0.05]
+#  lr:
+#    _type: loguniform
+#    _value: [0.0001, 0.1]
+#  replace_rate:
+#    _type: quniform
+#    _value: [0, 0.9, 0.05]
+#  topk:
+#    _type: quniform
+#    _value: [10, 51, 1]
+#  flow_n_hidden:
+#    _type: quniform
+#    _value: [ 1, 3, 1 ]
+#  flow_n_blocks:
+#    _type: quniform
+#    _value: [ 1, 3, 1 ]
+
+
+#trial_command: python train.py --dataset SWAT --manual_seed 99 --missing_rate 0 --flow_hidden_size 100 --flow_n_hidden 1 --flow_n_blocks 2 --mask_rate 0.35 --replace_rate 0.8 --topk 46 --lookback 100 --epochs 50 --init_lr 0.000784 --loss_min_save True --clip_grad True --weight_decay 1e-5 --eps 1e-4 --convEn False --remask True
+trial_command: python train.py --dataset SWAT --manual_seed 99 --missing_rate 0 --rel False --flow_hidden_size 100 --flow_n_hidden 2 --flow_n_blocks 3 --mask_rate 0.7 --replace_rate 0.7 --topk 35 --lookback 100 --epochs 50 --init_lr 0.0006145054186006435 --loss_min_save True --clip_grad True --weight_decay 1e-5 --eps 1e-4 --convEn False --remask True
+trial_code_directory: .
+experiment_working_directory: nni-experiments
+
+max_trial_number: 10
+trial_concurrency: 1
+
+tuner:
+  name: TPE
+  class_args:
+    optimize_mode: minimize
+
+training_service:
+  platform: local
+

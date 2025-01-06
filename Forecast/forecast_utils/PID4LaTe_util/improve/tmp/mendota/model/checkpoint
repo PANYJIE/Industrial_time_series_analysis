@@ -1,0 +1,2 @@
+model_checkpoint_path: "trained_model2_+_1_100.ckpt"
+all_model_checkpoint_paths: "trained_model2_+_1_100.ckpt"
