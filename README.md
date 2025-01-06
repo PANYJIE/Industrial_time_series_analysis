@@ -13,7 +13,7 @@ experimentally verified on actual industrial production data and public datasets
 We recommend to first setup a clean Python environment for your project with Python 3.8+ using conda.
 Once your environment is set up you can install darts using pip:
 ``` python
-pip install my-awesome-package
+pip install Industrial_time_series_analysis
 ```
 # Dependencies
 
