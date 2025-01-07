@@ -4,7 +4,7 @@ These algorithms have been experimentally validated using actual industrial prod
 |----------       |------------------------------------------------------------------|
 | Describe        | MICAD,MOCAR,RBS,TSCA                                             |
 | Decision-making | Il_Std,Qcd,SDE_DK                                                |
-| Diagnosis       | MCFMAAE,MGAHGM                                                   |
+| Diagnose       | MCFMAAE,MGAHGM                                                   |
 | Forecast        | MSNET,PID4LaTe,STD_Phy,STDNet,TDG4MSF,CGRAN,MMPNN,MCRN,TALS,MANO |
 | Control         | PMCCL                                                            |
 
