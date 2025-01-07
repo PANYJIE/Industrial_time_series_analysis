@@ -5,13 +5,13 @@ from Industrial_time_series_analysis.Forecast.forecast_utils.STD_Phy_util.util i
 from Industrial_time_series_analysis.Forecast.forecast_utils.STD_Phy_util.train_improve import Trainer_D
 from Industrial_time_series_analysis.Forecast.forecast_utils.STD_Phy_util.stae_model_improve8 import stae_predict#算了，之后再改吧
 
-seed = 42  # 可以是任何整数
+seed = 42
 
-# 设置PyTorch随机种子
+
 torch.manual_seed(seed)
 torch.cuda.manual_seed(seed)
 
-# 设置NumPy随机种子
+
 np.random.seed(seed)
 torch.backends.cudnn.benchmark = False
 torch.backends.cudnn.deterministic = True

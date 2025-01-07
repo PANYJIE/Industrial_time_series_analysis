@@ -93,22 +93,6 @@ def train(model=None, save_path='', pre_model=None, config={}, train_dataloader=
     t = np.arange(0, time_points)
     train_loss_list = np.asarray(train_loss_list)
     val_loss_list = np.asfarray(val_loss_list)
-    # plt.plot(t, val_loss_list, label='val_loss', color='green')
-    # plt.legend(prop=font1, loc='upper center', ncol=2)
-    # plt.xlabel('Time (Second)', fontproperties='Times New Roman', fontsize=20)
-    # plt.xticks(fontproperties='Arial', fontsize=16)
-    # plt.ylabel('Value', fontproperties='Times New Roman', fontsize=20)
-    # plt.yticks(fontproperties='Arial', fontsize=16)
-    # plt.show()
-    # plt.close()
-    # plt.plot(t1, train_loss_list, label='train_loss', color='black')
-    # plt.legend(prop=font1, loc='upper center', ncol=2)
-    # plt.xlabel('Time (Second)', fontproperties='Times New Roman', fontsize=20)
-    # plt.xticks(fontproperties='Arial', fontsize=16)
-    # plt.ylabel('Value', fontproperties='Times New Roman', fontsize=20)
-    # plt.yticks(fontproperties='Arial', fontsize=16)
-    # plt.show()
-    # plt.close()
 
 
     return torch.save(val_model.state_dict(), save_path), train_loss_list,val_loss_list

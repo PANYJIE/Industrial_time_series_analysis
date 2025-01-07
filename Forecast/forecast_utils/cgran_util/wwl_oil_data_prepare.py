@@ -3,16 +3,16 @@ import torch
 from copy import deepcopy
 
 def oil_data_prepare(df_data, data_mean_save_path, data_var_save_path, data_num_per_sample, data_predict_step):
-    # 我们的风机数据
+
     data = np.array(df_data)
-    data = data[:, 1:]  # 不取第一列数据，第一列是日期
-    data = np.flipud(data)  # 将数据倒序，按照时间顺序排序
-    all_data = deepcopy(data)   # 深拷贝数据
+    data = data[:, 1:]
+    data = np.flipud(data)
+    all_data = deepcopy(data)
     print((all_data.shape))
-    # 滚动取数据
-    num_per_sample = data_num_per_sample    # 数据分段大小
-    roll_skip_step = 4      # 滚动步长
-    # 取数据
+
+    num_per_sample = data_num_per_sample
+    roll_skip_step = 4
+
     all_samples = []
     sample_idx = 0
     while(1):
@@ -32,9 +32,8 @@ def oil_data_prepare(df_data, data_mean_save_path, data_var_save_path, data_num_
     all_samples = all_samples.astype('float32')
     print('all sample shape:', all_samples.shape, all_samples.dtype)
 
-    # 数据标准化
-    all_data = all_samples #[样本数目， 每个样本包含的数据数目， 特征数目]
-    # 数据归一化,先把数据还原维度（样本数*每个样本包含数据数目， 特征数目），归一化后重新切分
+
+    all_data = all_samples
     dim0 = all_data.shape[0]
     dim1 = all_data.shape[1]
     dim2 = all_data.shape[2]
@@ -46,18 +45,15 @@ def oil_data_prepare(df_data, data_mean_save_path, data_var_save_path, data_num_
     d_var = np.std(all_data, axis=0)
     np.save(data_mean_save_path, d_mean)
     np.save(data_var_save_path, d_var)
-    # 两种归一化方法，这里使用均值归一化
     # nor = (all_data - d_min) / (d_max - d_min)
     nor = (all_data - d_mean) / (d_var + 1e-8)
     all_data = nor.reshape(dim0, dim1, dim2)
     print('data shape:', all_data.shape, all_data.dtype)
 
-    # 拆分数据集,需要根据预测任务来拆分
-    num_per_sample = data_num_per_sample  # 数据分段大小
-    predict_step = data_predict_step    # 预测步长
+    num_per_sample = data_num_per_sample
+    predict_step = data_predict_step
 
-    # 准备训练集，验证集，测试集
-    # 分折交叉验证
+
     k_flod = 10
     train_set_ratio = 0.8
     val_set_ratio = 0.1

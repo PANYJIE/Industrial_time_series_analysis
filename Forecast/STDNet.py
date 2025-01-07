@@ -300,7 +300,6 @@ class Exp_Long_Term_Forecast(Exp_Basic):
         return total_loss
 
     def train(self, setting, data_path):
-        # 保存loader数据
         # train_data, train_loader = self._get_data(flag='train')
         # vali_data, vali_loader = self._get_data(flag='val')
         # test_data, test_loader = self._get_data(flag='test')
@@ -499,35 +498,33 @@ class Exp_Long_Term_Forecast(Exp_Basic):
                     pd = np.concatenate((input[0, :, -1], pred[0, :, -1]), axis=0)
                     visual(gt, pd, os.path.join(folder_path, str(i) + '.pdf'))
 
-        # 假设 preds 和 trues 是已经通过测试模型生成的 NumPy 数组
         preds1 = np.array(preds)
         trues1 = np.array(trues)
 
-        # 进行 reshape 以展开维度，生成二维数据
         preds_flat = preds1.reshape(-1, preds1.shape[-2])
         trues_flat = trues1.reshape(-1, trues1.shape[-2])
 
-        # 保存路径检查
+
         folder_path = target_dir4 + setting + '/'
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
 
-        # 保存预测值为 CSV 文件
+
         predictions_file = folder_path + 'predictions.csv'
         with open(predictions_file, mode='w', newline='') as file:
             writer = csv.writer(file)
-            # 写入预测值
-            writer.writerow([f"pred_{i}" for i in range(preds_flat.shape[1])])  # 写入列名
-            writer.writerows(preds_flat)  # 写入预测数据
+
+            writer.writerow([f"pred_{i}" for i in range(preds_flat.shape[1])])
+            writer.writerows(preds_flat)
             print(preds_flat)
 
-        # 保存真实值为 CSV 文件
+
         true_values_file = folder_path + 'true_values.csv'
         with open(true_values_file, mode='w', newline='') as file:
             writer = csv.writer(file)
-            # 写入真实值
-            writer.writerow([f"true_{i}" for i in range(trues_flat.shape[1])])  # 写入列名
-            writer.writerows(trues_flat)  # 写入真实数据
+
+            writer.writerow([f"true_{i}" for i in range(trues_flat.shape[1])])
+            writer.writerows(trues_flat)
 
         print(f"Predictions saved to {predictions_file}")
         print(f"True values saved to {true_values_file}")

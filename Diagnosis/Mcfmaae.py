@@ -10,15 +10,7 @@ import os
 import pandas as pd
 # dataset='SWaT', model='MCFMAAE', test=False, retrain=False, less=False, epochs=10
 
-"""
-加载训练集
-input：
-    train_path:训练集路径
-    less:是否减少数据
-    percentage:减少的比例
-output:
-    train_loader:训练集加载器
-"""
+
 
 
 def load_dataset(data_dir='./data/mcfmaae_data', dataset='SMD', less=False, percentage=0.2):
@@ -50,7 +42,6 @@ def load_dataset(data_dir='./data/mcfmaae_data', dataset='SMD', less=False, perc
         loader.append(np.load(os.path.join(folder, f'{file}.npy')))
     if less:
         loader[0] = utils.cut_array(percentage, loader[0])
-    # 加载训练数据
     train_loader = DataLoader(
         loader[0], batch_size=loader[0].shape[0])      # SWaT_train: 3000
     labels = loader[1]
@@ -58,16 +49,7 @@ def load_dataset(data_dir='./data/mcfmaae_data', dataset='SMD', less=False, perc
     return train_loader, dims
 
 
-# 加载测试数据
-"""
-加载测试数据
-input：
-    test_path:测试集路径
-    label_path:标签路径
-output:
-    test_loader:测试集加载器
-    label_data:标签数据
-"""
+
 
 
 def load_test_data(data_dir, dataset):
@@ -94,7 +76,6 @@ def load_test_data(data_dir, dataset):
     return test_loader, label_data
 
 
-# 输入维度，创建新模型
 def create_model(dims, modelname, dataset,epoch):
     model_class = getattr(models, modelname)
     model = model_class(dims, dataset).double()
@@ -113,7 +94,7 @@ def create_model(dims, modelname, dataset,epoch):
     }
 
 
-# 加载模型
+
 def load_model(model_dir, modelname, datasetname, dims):
     model_class = getattr(models, modelname)
     model = model_class(dims).double()
@@ -138,20 +119,6 @@ def load_model(model_dir, modelname, datasetname, dims):
         "accuracy_list": accuracy_list
     }
 
-
-"""
-训练模型
-input:
-    train_loader:训练集加载器
-    model:模型
-    optimizer:优化器
-    scheduler:学习率调度器
-    epoch:训练轮数
-    accuracy_list:准确率列表
-    dataset:数据集名称
-output:
-    file_path:模型保存路径
-"""
 
 
 def train(train_loader=None, model_dict=None, dataset='data', model_dir='/QUAN/Industrial_time_series_analysis/Diagnose/diagnose_utils/new_mcfmaae_util/checkpoints'):

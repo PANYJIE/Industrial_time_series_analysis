@@ -100,7 +100,6 @@ def mode_num_update(values):
 def community_detection(adjacency_matrix, G):
     part = community.best_partition(G)
     values = [part.get(node) for node in G.nodes()]
-    # 更新模态序号
     mode_num, labels, indexs = mode_num_update(values)
     metrics = pd.DataFrame(index=indexs, columns=['n', 'm'])
     sample_num_mode = []

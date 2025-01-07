@@ -179,17 +179,15 @@ def get_causality(data, tau_max, pc_alpha, alpha_level):
 def lag_order(data):
 
     data.set_index(['time'], inplace=True)
-    # 确保索引为 datetime 类型，并指定频率
     data.index = pd.to_datetime(data.index)
-    data = data.asfreq('H')  # 假设您的数据频率为2小时，根据实际情况调整
+    data = data.asfreq('H')
 
-    # 使用VAR模型和AIC准则确定最佳滞后阶数
     model = VAR(data)
     aic_values = []
     bic_values = []
     fpe_values = []
     hqic_values = []
-    lags = range(1, 10)  # 可以根据需要调整最大滞后阶数的范围
+    lags = range(1, 10)
 
     for lag in lags:
         result = model.fit(lag)
@@ -198,7 +196,6 @@ def lag_order(data):
         fpe_values.append(result.fpe)
         hqic_values.append(result.hqic)
 
-    # 找到AIC、BIC和HQIC最小的滞后阶数
     min_aic = min(aic_values)
     optimal_lag_aic = lags[aic_values.index(min_aic)]
 

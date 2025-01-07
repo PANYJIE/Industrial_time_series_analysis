@@ -290,8 +290,8 @@ def test(trainer, modelname, y_test, train_config, env_config, target_dims, x_tr
 
 def main():
     # 设置参数
-    dataset = "SMD"  # 假设数据集仍然是SWAT，如需更改，请替换此值
-    group = "1-1"  # 假设组仍然是1-1，如需更改，请替换此值
+    dataset = "SMD"
+    group = "1-1"
     lookback = 100
     mask_rate = 0.45
     replace_rate = 0.25
@@ -333,7 +333,6 @@ def main():
         manual_seed=manual_seed
     )
 
-    # 加载数据
     data_loaders = load_data(dataset, train_config)
     train_loader = data_loaders["train_loader"]
     val_loader = data_loaders["val_loader"]
@@ -344,15 +343,12 @@ def main():
     y_test = data_loaders["y_test"]
     out_dim = data_loaders["out_dim"]
 
-    # 创建模型
     model = create_model(train_config=train_config, env_config=env_config,
                          out_dim=out_dim, n_features=data_loaders["n_features"])
 
-    # 训练模型
     trainer = train(train_config=train_config, env_config=env_config, model=model, train_loader=train_loader,
                     val_loader=val_loader, target_dims=target_dims, output_path=output_path, n_features=data_loaders["n_features"])
 
-    # 测试模型
     print(test(trainer=trainer, modelname=train_config["save_path"], y_test=y_test, train_config=train_config, env_config=env_config,
           target_dims=target_dims, x_train=data_loaders["x_train"], x_test=data_loaders["x_test"], n_features=data_loaders["n_features"]))
 
