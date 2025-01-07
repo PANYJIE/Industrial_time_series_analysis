@@ -1,12 +1,12 @@
-This is an algorithm library dedicated to industrial time series data analysis, including 5 types of algorithms, 20 algorithms, 
-experimentally verified on actual industrial production data and public datasets, and 25 algorithm instances are formed, as follows
-| Type     | Algorithm                                                        |
-|----------|------------------------------------------------------------------|
-| Describe | MICAD,MOCAR,RBS,TSCA                                             |
-| Decide   | Il_Std,Qcd,SDE_DK                                                |
-| Dianosse | MCFMAAE,MGAHGM                                                   |
-| Forecast | MSNET,PID4LaTe,STD_Phy,STDNet,TDG4MSF,CGRAN,MMPNN,MCRN,TALS,MANO |
-| Control  | PMCCL                                                            |
+This is an algorithm library specifically tailored for analyzing industrial time series data, encompassing five categories of algorithms, totaling 20 individual algorithms. 
+These algorithms have been experimentally validated using actual industrial production data and public datasets, ultimately resulting in the formation of 25 algorithm instances，as follows.
+| Type            | Algorithm                                                        |
+|----------       |------------------------------------------------------------------|
+| Describe        | MICAD,MOCAR,RBS,TSCA                                             |
+| Decision-making | Il_Std,Qcd,SDE_DK                                                |
+| Diagnosis       | MCFMAAE,MGAHGM                                                   |
+| Forecast        | MSNET,PID4LaTe,STD_Phy,STDNet,TDG4MSF,CGRAN,MMPNN,MCRN,TALS,MANO |
+| Control         | PMCCL                                                            |
 
 # Quick Install
 
